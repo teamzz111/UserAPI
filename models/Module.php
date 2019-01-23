@@ -31,10 +31,8 @@ class Module extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'nombre', 'icono', 'opciones', 'estado'], 'required'],
-            [['id'], 'integer'],
+            [['nombre', 'icono', 'opciones', 'estado'], 'required'],
             [['nombre', 'icono', 'opciones', 'estado'], 'string', 'max' => 45],
-            [['id'], 'unique'],
         ];
     }
 

@@ -9,12 +9,38 @@ class RoleController extends ActiveController
 {
     public $modelClass = 'app\models\Role';
 
+    public function behaviors()
+    {
+        return [
+            'corsFilter' => [
+                'class' => \yii\filters\Cors::className(),
+                'cors' => [
+                    // restrict access to
+                    'Origin' => ['*'],
+                    // Allow only POST and PUT methods
+                    'Access-Control-Request-Method' => ['POST', 'PUT'],
+                    // Allow only headers 'X-Wsse'
+                    'Access-Control-Request-Headers' => ['X-Wsse'],
+                    // Allow credentials (cookies, authorization headers, etc.) to be exposed to the browser
+                    'Access-Control-Allow-Credentials' => true,
+                    // Allow OPTIONS caching
+                    'Access-Control-Max-Age' => 3600,
+                    // Allow the X-Pagination-Current-Page header to be exposed to the browser.
+                    'Access-Control-Expose-Headers' => ['X-Pagination-Current-Page'],
+                ],
+    
+            ],
+        ];
+    }
+
+
     public function actions()
     {
         $actions = parent::actions();
         unset($actions['create']);
         unset($actions['delete']);
         unset($actions['update']);
+        unset($actions['view']);
         return $actions;
     }
 
@@ -40,5 +66,57 @@ class RoleController extends ActiveController
         {
             return ['status' => 0, 'message' => 'Ups.. Pasó algo inesperado.', 'object' => 'Error desconocido'];
         }
+    }
+
+    public function actionUpdate($id)
+    {
+        $modelRole = Role::find()->where(['ID' => $id])->one();
+        
+        if(empty(($modelRole)))
+        {
+            return ['status' => 0, 'message' => 'No existe el usuario', 'object' => 'No se enconró el usuario, debe registrar primero. Estado: 200'];
+        }
+        else 
+        {   
+            $modelRole->attributes = \yii::$app->request->post();
+            if($modelRole->update())
+            {
+                return ['status' => 1, 'message' => 'Actualización exitosa', 'object' => 'Estado: 200, éxito.'];
+            }
+            else
+            {
+                return ['status' => 0, 'message' => 'Ups.. Pasó algo inesperado.', 'object' => 'Error desconocido'];
+            }
+        } 
+    }
+    
+    public function actionView($id)
+    {
+        $modelRole =  Role::find()->where(['ID' => $id ])->one();
+        if(empty(($modelRole)))
+        {
+            return ['status' => 0, 'message' => 'No existe el usuario', 'object' => 'No se enconró el usuario, debe registrar primero. Estado: 200'];
+        }
+        else
+        {
+            return $modelRole;
+        }
+    }
+
+    public function actionDelete($id)
+    {
+        $modelRole = Role::find()->where(['ID' => $id])->one();
+        
+        if(empty(($modelRole)))
+        {
+            return ['status' => 0, 'message' => 'No existe el usuario', 'object' => 'No se enconró el usuario, debe registrar primero. Estado: 200'];
+        }
+        else if($modelRole->delete()) 
+        {   
+            return ['status' => 1, 'message' => 'Borrado exitoso', 'object' => 'Estado: 200, éxito.'];
+        } 
+        else {
+            return ['status' => 0, 'message' => 'Ups.. Pasó algo inesperado.', 'object' => 'Error desconocido'];       
+        } 
     }
 }

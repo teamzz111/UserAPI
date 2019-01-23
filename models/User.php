@@ -38,13 +38,12 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'nombres', 'apellidos', 'tipo_doc', 'nro_doc', 'email', 'telefono', 'direccion', 'usuario', 'clave', 'estado', 'rol_id'], 'required'],
-            [['id', 'rol_id'], 'integer'],
+            [['nombres', 'apellidos', 'tipo_doc', 'nro_doc', 'email', 'telefono', 'direccion', 'usuario', 'clave', 'estado', 'rol_id'], 'required'],
+            [['rol_id'], 'integer'],
             [['nombres', 'apellidos', 'tipo_doc', 'nro_doc', 'email', 'telefono', 'direccion', 'usuario', 'clave', 'estado'], 'string', 'max' => 45],
             [['email'], 'unique'],
             [['nro_doc'], 'unique'],
             [['usuario'], 'unique'],
-            [['id'], 'unique'],
             [['rol_id'], 'exist', 'skipOnError' => true, 'targetClass' => Rol::className(), 'targetAttribute' => ['rol_id' => 'id']],
         ];
     }

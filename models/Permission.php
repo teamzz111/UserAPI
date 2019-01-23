@@ -34,10 +34,9 @@ class Permission extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'fecha', 'leer', 'escribir', 'eliminar', 'modulo_id', 'rol_id'], 'required'],
-            [['id', 'modulo_id', 'rol_id'], 'integer'],
-            [['fecha', 'leer', 'escribir', 'eliminar'], 'string', 'max' => 45],
-            [['id'], 'unique'],
+            [['leer', 'escribir', 'eliminar', 'modulo_id', 'rol_id'], 'required'],
+            [['modulo_id', 'rol_id'], 'integer'],
+            [['leer', 'escribir', 'eliminar'], 'string', 'max' => 45],
             [['modulo_id'], 'exist', 'skipOnError' => true, 'targetClass' => Modulo::className(), 'targetAttribute' => ['modulo_id' => 'id']],
             [['rol_id'], 'exist', 'skipOnError' => true, 'targetClass' => Rol::className(), 'targetAttribute' => ['rol_id' => 'id']],
         ];

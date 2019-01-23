@@ -32,9 +32,9 @@ class Role extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'nivel', 'estado'], 'required'],
+            [['nombre', 'nivel', 'estado'], 'required', 'message' => 'El campo {attribute} está incompleto'],
             [['estado'], 'integer'],
-            [['nombre', 'nivel'], 'string', 'max' => 45],
+            [['nombre', 'nivel'], 'string', 'max' => 45, 'message' => 'El campo {attribute} está superó el límite admitido',], 
             
         ];
     }
