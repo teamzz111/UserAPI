@@ -48,12 +48,6 @@ class PermissionController extends ActiveController
 
         $modelPermission->load(Yii::$app->request->post(), '');
 
-        $fecha = new DateTime();
-        
-
-
-        var_dump($modelPermission);
-        return $modelPermission;
         $errors = '';
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         
