@@ -4,7 +4,7 @@ use Yii;
 use yii\filters\VerbFilter;
 use yii\rest\ActiveController;
 use app\models\Permission;
-
+use DateTime;
 class PermissionController extends ActiveController
 {
     public $modelClass = 'app\models\Permission';
@@ -47,7 +47,13 @@ class PermissionController extends ActiveController
         $modelPermission = new Permission();
 
         $modelPermission->load(Yii::$app->request->post(), '');
+
+        $fecha = new DateTime();
         
+
+
+        var_dump($modelPermission);
+        return $modelPermission;
         $errors = '';
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         

@@ -108,7 +108,7 @@ class ModuleController extends ActiveController
         
         if(empty(($modelModule)))
         {
-            return ['status' => 0, 'message' => 'No existe el usuario', 'object' => 'No se enconró el usuario, debe registrar primero. Estado: 200'];
+            return ['status' => 0, 'message' => 'No existe el usuario', 'object' => 'No se encontró el usuario, debe registrar primero. Estado: 200'];
         }
         else if($modelModule->delete()) 
         {   

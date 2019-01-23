@@ -36,8 +36,9 @@ class Permission extends \yii\db\ActiveRecord
         return [
             [['leer', 'escribir', 'eliminar', 'modulo_id', 'rol_id'], 'required',  "message" => "Campo {attribute} no puede estar vacío."],
             [['modulo_id', 'rol_id'], 'integer'],
+            [['fecha'], 'string'],
             [['leer', 'escribir', 'eliminar'], 'string', 'max' => 45,  "message" => "Campo {attribute} sobrepasó el límite esperado"],
-            [['modulo_id'], 'exist', 'skipOnError' => true, 'targetClass' => Module::className(), 'targetAttribute' => ['modulo_id' => 'id']],
+            [['modulo_id'], 'exist', 'message' => 'No existe el rol','skipOnError' => true, 'targetClass' => Module::className(), 'targetAttribute' => ['modulo_id' => 'id']],
             [['rol_id'], 'exist', 'message' => 'No existe el rol', 'skipOnError' => true, 'targetClass' => Role::className(), 'targetAttribute' => ['rol_id' => 'id']],
         ];
     }
