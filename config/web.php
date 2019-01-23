@@ -12,9 +12,16 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'response' => [
+            'format' => yii\web\Response::FORMAT_JSON,
+            'charset' => 'UTF-8',
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'sFsPBmfKoz4agcYZG2JFhiu3YtpUg7yx',
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ],    
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -43,14 +50,19 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
+        
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
+            'rules' =>    [ 
+                'class' => 'yii\rest\UrlRule',
+                'controller' => 'ModuloController',
+                    /*'permission' => 'UserController',
+                    'rol' => 'UserController',
+                    'usuario' => 'UserController',*/
+                //]
             ],
         ],
-        */
     ],
     'params' => $params,
 ];
@@ -61,14 +73,14 @@ if (YII_ENV_DEV) {
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+        'allowedIPs' => ['*'],
     ];
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+        'allowedIPs' => ['*'],
     ];
 }
 
