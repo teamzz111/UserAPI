@@ -9,4 +9,5 @@ use app\models\User;
 class UserController extends ActiveController
 {
     public $modelClass = 'app\models\User';
+    
 }

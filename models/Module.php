@@ -15,7 +15,7 @@ use Yii;
  *
  * @property Permiso[] $permisos
  */
-class Modulo extends \yii\db\ActiveRecord
+class Module extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -57,6 +57,6 @@ class Modulo extends \yii\db\ActiveRecord
      */
     public function getPermisos()
     {
-        return $this->hasMany(Permiso::className(), ['modulo_id' => 'id']);
+        return $this->hasMany(Permission::className(), ['modulo_id' => 'id']);
     }
 }

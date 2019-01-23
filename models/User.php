@@ -75,6 +75,6 @@ class User extends \yii\db\ActiveRecord
      */
     public function getRol()
     {
-        return $this->hasOne(Rol::className(), ['id' => 'rol_id']);
+        return $this->hasOne(Role::className(), ['id' => 'rol_id']);
     }
 }

@@ -64,7 +64,7 @@ class Permission extends \yii\db\ActiveRecord
      */
     public function getModulo()
     {
-        return $this->hasOne(Modulo::className(), ['id' => 'modulo_id']);
+        return $this->hasOne(Module::className(), ['id' => 'modulo_id']);
     }
 
     /**
@@ -72,6 +72,6 @@ class Permission extends \yii\db\ActiveRecord
      */
     public function getRol()
     {
-        return $this->hasOne(Rol::className(), ['id' => 'rol_id']);
+        return $this->hasOne(Role::className(), ['id' => 'rol_id']);
     }
 }

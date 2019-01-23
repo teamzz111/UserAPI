@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\rbac\Permission;
 
 /**
  * This is the model class for table "rol".
@@ -31,10 +32,10 @@ class Role extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'nombre', 'nivel', 'estado'], 'required'],
-            [['id', 'estado'], 'integer'],
+            [['nombre', 'nivel', 'estado'], 'required'],
+            [['estado'], 'integer'],
             [['nombre', 'nivel'], 'string', 'max' => 45],
-            [['id'], 'unique'],
+            
         ];
     }
 
@@ -56,7 +57,7 @@ class Role extends \yii\db\ActiveRecord
      */
     public function getPermisos()
     {
-        return $this->hasMany(Permiso::className(), ['rol_id' => 'id']);
+        return $this->hasMany(Permission::className(), ['rol_id' => 'id']);
     }
 
     /**
@@ -64,6 +65,6 @@ class Role extends \yii\db\ActiveRecord
      */
     public function getUsuarios()
     {
-        return $this->hasMany(Usuario::className(), ['rol_id' => 'id']);
+        return $this->hasMany(User::className(), ['rol_id' => 'id']);
     }
 }
