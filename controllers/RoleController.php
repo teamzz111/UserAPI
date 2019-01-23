@@ -33,7 +33,6 @@ class RoleController extends ActiveController
         ];
     }
 
-
     public function actions()
     {
         $actions = parent::actions();
@@ -51,8 +50,8 @@ class RoleController extends ActiveController
         $modelRole->load(Yii::$app->request->post(), '');
         
         $errors = '';
-        
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        
         
         if(!$modelRole->validate())
         {

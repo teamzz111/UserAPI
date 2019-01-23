@@ -31,7 +31,7 @@ class Module extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'icono', 'opciones', 'estado'], 'required'],
+            [['nombre', 'icono', 'opciones', 'estado'], 'required', 'message' => 'Campo {attribute} no puede estar vacío.'],
             [['nombre', 'icono', 'opciones', 'estado'], 'string', 'max' => 45],
         ];
     }
