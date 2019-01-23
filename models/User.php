@@ -38,13 +38,13 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombres', 'apellidos', 'tipo_doc', 'nro_doc', 'email', 'telefono', 'direccion', 'usuario', 'clave', 'estado', 'rol_id'], 'required'],
+            [['nombres', 'apellidos', 'tipo_doc', 'nro_doc', 'email', 'telefono', 'direccion', 'usuario', 'clave', 'estado', 'rol_id'], 'required',  "message" => "Campo {attribute} no puede estar vacío."],
             [['rol_id'], 'integer'],
-            [['nombres', 'apellidos', 'tipo_doc', 'nro_doc', 'email', 'telefono', 'direccion', 'usuario', 'clave', 'estado'], 'string', 'max' => 45],
+            [['nombres', 'apellidos', 'tipo_doc', 'nro_doc', 'email', 'telefono', 'direccion', 'usuario', 'clave', 'estado'], 'string', 'max' => 45,  "message" => "Campo {attribute} sobrepasó el límite esperado"],
             [['email'], 'unique'],
             [['nro_doc'], 'unique'],
             [['usuario'], 'unique'],
-            [['rol_id'], 'exist', 'skipOnError' => true, 'targetClass' => Rol::className(), 'targetAttribute' => ['rol_id' => 'id']],
+            [['rol_id'], 'exist', 'message' => 'No existe el rol', 'skipOnError' => true, 'targetClass' => Role::className(), 'targetAttribute' => ['rol_id' => 'id']],
         ];
     }
 
