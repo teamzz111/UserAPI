@@ -50,12 +50,12 @@ class PermissionController extends ActiveController
 
     public function actionView($id)
     {
-        $modelCliente = User::find()->where(['ID' => $id])->one();
+        $modelPermission = Permission::find()->where(['ID' => $id])->one();
         if(empty($modelCliente))
         {
             return ['status' => 0, 'message' => 'Usuario no registrado', 'object' => '404 Not found'];
         }
-        return $modelCliente;
+        return $modelPermission;
     }
 
     public function actionCreate()
