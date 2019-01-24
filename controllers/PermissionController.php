@@ -51,9 +51,9 @@ class PermissionController extends ActiveController
     public function actionView($id)
     {
         $modelPermission = Permission::find()->where(['ID' => $id])->one();
-        if(empty($modelCliente))
+        if(empty($modelPermission))
         {
-            return ['status' => 0, 'message' => 'Usuario no registrado', 'object' => '404 Not found'];
+            return ['status' => 0, 'message' => 'Permiso no registrado', 'object' => '404 Not found'];
         }
         return $modelPermission;
     }
@@ -85,10 +85,10 @@ class PermissionController extends ActiveController
     public function actionUpdate($id)
     {
         $modelPermission = Permission::find()->where(['ID' => $id])->one();
-        
+
         if(empty(($modelPermission)))
         {
-            return ['status' => 0, 'message' => 'No existe el usuario', 'object' => 'No se enconró el usuario, debe registrar primero. Estado: 200'];
+            return ['status' => 0, 'message' => 'No existe el permiso', 'object' => 'No se enconró el usuario, debe registrar primero. Estado: 200'];
         }
         else 
         {   
@@ -110,7 +110,7 @@ class PermissionController extends ActiveController
         
         if(empty(($modelPermission)))
         {
-            return ['status' => 0, 'message' => 'No existe el usuario', 'object' => 'No se enconró el usuario, debe registrar primero. Estado: 200'];
+            return ['status' => 0, 'message' => 'No existe el permiso', 'object' => 'No se encontró el permiso, debe registrar primero. Estado: 200'];
         }
         else if($modelPermission->delete()) 
         {   
