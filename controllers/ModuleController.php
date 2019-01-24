@@ -51,12 +51,12 @@ class ModuleController extends ActiveController
 
     public function actionView($id)
     {
-        $modelCliente = Module::find()->where(['ID' => $id])->one();
-        if(empty($modelCliente))
+        $modelModule = Module::find()->where(['ID' => $id])->one();
+        if(empty($modelModule))
         {
-            return ['status' => 0, 'message' => 'Usuario no registrado', 'object' => '404 Not found'];
+            return ['status' => 0, 'message' => 'Módulo no registrado', 'object' => '404 Not found'];
         }
-        return $modelCliente;
+        return $modelModule;
     }
 
     public function actionCreate()
@@ -89,7 +89,7 @@ class ModuleController extends ActiveController
         
         if(empty(($modelModule)))
         {
-            return ['status' => 0, 'message' => 'No existe el usuario', 'object' => 'No se enconró el usuario, debe registrar primero. Estado: 200'];
+            return ['status' => 0, 'message' => 'No existe el módulo', 'object' => 'No se enconró el usuario, debe registrar primero. Estado: 200'];
         }
         else 
         {   
@@ -113,7 +113,7 @@ class ModuleController extends ActiveController
         
         if(empty(($modelModule)))
         {
-            return ['status' => 0, 'message' => 'No existe el usuario', 'object' => 'No se encontró el usuario, debe registrar primero. Estado: 200'];
+            return ['status' => 0, 'message' => 'No existe el módulo', 'object' => 'No se encontró el módulo, debe registrar primero. Estado: 200'];
         }
         else if($modelModule->delete()) 
         {   

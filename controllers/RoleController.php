@@ -52,13 +52,13 @@ class RoleController extends ActiveController
 
     public function actionView($id)
     {
-        $modelCliente = Role::find()->where(['ID' => $id])->one();
-        var_dump($modelCliente);
-        if(empty($modelCliente))
+        $modelRole = Role::find()->where(['ID' => $id])->one();
+        
+        if(empty($modelRole))
         {
-            return ['status' => 0, 'message' => 'Usuario no registrado', 'object' => '404 Not found'];
+            return ['status' => 0, 'message' => 'Rol no registrado', 'object' => '404 Not found'];
         }
-        //return $modelCliente;
+        return $modelRole;
     }
 
     public function actionCreate()
@@ -113,7 +113,7 @@ class RoleController extends ActiveController
         
         if(empty(($modelRole)))
         {
-            return ['status' => 0, 'message' => 'No existe el usuario', 'object' => 'No se enconró el usuario, debe registrar primero. Estado: 200'];
+            return ['status' => 0, 'message' => 'No existe el rol', 'object' => 'No se enconró el usuario, debe registrar primero. Estado: 200'];
         }
         else if($modelRole->delete()) 
         {   
