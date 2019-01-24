@@ -39,8 +39,24 @@ class ModuleController extends ActiveController
         unset($actions['create']);
         unset($actions['delete']);
         unset($actions['update']);
+        unset($actions['index']);
         unset($actions['view']);
         return $actions;
+    }
+
+    public function actionIndex()
+    {        
+        return Module::find()->all();
+    }
+
+    public function actionView($id)
+    {
+        $modelCliente = Module::find()->where(['ID' => $id])->one();
+        if(empty($modelCliente))
+        {
+            return ['status' => 0, 'message' => 'Usuario no registrado', 'object' => '404 Not found'];
+        }
+        return $modelCliente;
     }
 
     public function actionCreate()
@@ -89,18 +105,7 @@ class ModuleController extends ActiveController
         } 
     }
     
-    public function actionView($id)
-    {
-        $modelModule =  Module::find()->where(['ID' => $id ])->one();
-        if(empty(($modelModule)))
-        {
-            return ['status' => 0, 'message' => 'No existe el usuario', 'object' => 'No se enconró el usuario, debe registrar primero. Estado: 200'];
-        }
-        else
-        {
-            return $modelModule;
-        }
-    }
+ 
 
     public function actionDelete($id)
     {

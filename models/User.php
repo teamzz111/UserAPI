@@ -38,7 +38,7 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombres', 'apellidos', 'tipo_doc', 'nro_doc', 'email', 'telefono', 'fecha','direccion', 'usuario', 'clave', 'estado', 'rol_id'], 'required',  "message" => "Campo {attribute} no puede estar vacío."],
+            [['nombres', 'apellidos', 'tipo_doc', 'nro_doc', 'email', 'telefono','direccion', 'usuario', 'clave', 'estado', 'rol_id'], 'required',  "message" => "Campo {attribute} no puede estar vacío."],
             [['rol_id'], 'integer'],
             [['nombres', 'apellidos', 'tipo_doc', 'nro_doc', 'email', 'telefono', 'direccion', 'usuario', 'clave', 'estado'], 'string', 'max' => 45,  "message" => "Campo {attribute} sobrepasó el límite esperado"],
             [['email'], 'unique'],

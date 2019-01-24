@@ -4,7 +4,7 @@ use Yii;
 use yii\filters\VerbFilter;
 use yii\rest\ActiveController;
 use app\models\Permission;
-use DateTime;
+
 class PermissionController extends ActiveController
 {
     public $modelClass = 'app\models\Permission';
@@ -38,8 +38,24 @@ class PermissionController extends ActiveController
         unset($actions['create']);
         unset($actions['delete']);
         unset($actions['update']);
+        unset($actions['index']);
         unset($actions['view']);
         return $actions;
+    }
+
+    public function actionIndex()
+    {        
+        return Permission::find()->all();
+    }
+
+    public function actionView($id)
+    {
+        $modelCliente = User::find()->where(['ID' => $id])->one();
+        if(empty($modelCliente))
+        {
+            return ['status' => 0, 'message' => 'Usuario no registrado', 'object' => '404 Not found'];
+        }
+        return $modelCliente;
     }
 
     public function actionCreate()
@@ -88,19 +104,6 @@ class PermissionController extends ActiveController
         } 
     }
     
-    public function actionView($id)
-    {
-        $modelPermission =  Permission::find()->where(['ID' => $id ])->one();
-        if(empty(($modelPermission)))
-        {
-            return ['status' => 0, 'message' => 'No existe el usuario', 'object' => 'No se enconró el usuario, debe registrar primero. Estado: 200'];
-        }
-        else
-        {
-            return $modelPermission;
-        }
-    }
-
     public function actionDelete($id)
     {
         $modelPermission = Permission::find()->where(['ID' => $id])->one();
