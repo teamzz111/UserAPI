@@ -86,20 +86,21 @@ class PermissionController extends ActiveController
     {
         $modelPermission = Permission::find()->where(['ID' => $id])->one();
 
-        if(empty(($modelPermission)))
+        if(empty($modelPermission))
         {
             return ['status' => 0, 'message' => 'No existe el permiso', 'object' => 'No se enconró el usuario, debe registrar primero. Estado: 200'];
         }
         else 
         {   
-            $modelPermission->attributes = \yii::$app->request->post();
+            $modelPermission->attributes = \Yii::$app->request->post();
+
             if($modelPermission->update())
             {
                 return ['status' => 1, 'message' => 'Actualización exitosa', 'object' => 'Estado: 200, éxito.'];
             }
             else
             {
-                return ['status' => 0, 'message' => 'Ups.. Pasó algo inesperado.', 'object' => $modelPermission->errors];
+                return ['status' => 0, 'message' => 'Ups.. Al parecer no es necesario actualizar puesto que ya está definido en ese dato', 'object' => $modelPermission->errors];
             }
         } 
     }

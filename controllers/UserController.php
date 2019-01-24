@@ -101,7 +101,7 @@ class UserController extends ActiveController
             }
             else
             {
-                return ['status' => 0, 'message' => 'Ups.. Pasó algo inesperado.', 'object' => $modelUser->errors];
+                return ['status' => 0, 'message' => 'Ups... No es necesario actualizar este dato', 'object' => $modelUser->errors];
             }
         } 
     }

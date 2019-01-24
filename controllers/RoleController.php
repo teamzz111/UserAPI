@@ -102,7 +102,7 @@ class RoleController extends ActiveController
             }
             else
             {
-                return ['status' => 0, 'message' => 'Ups.. Pasó algo inesperado.', 'object' => 'Error desconocido'];
+                return ['status' => 0, 'message' => 'Ups... No es necesario actualizar este dato', 'object' => 'Error desconocido'];
             }
         } 
     }
@@ -120,7 +120,7 @@ class RoleController extends ActiveController
             return ['status' => 1, 'message' => 'Borrado exitoso', 'object' => 'Estado: 200, éxito.'];
         } 
         else {
-            return ['status' => 0, 'message' => 'Ups.. Pasó algo inesperado.', 'object' => 'Error desconocido'];       
+            return ['status' => 0, 'message' => 'Ups... No es necesario actualizar este dato', 'object' => 'Error desconocido'];       
         } 
     }
 }

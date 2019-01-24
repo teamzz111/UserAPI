@@ -100,7 +100,7 @@ class ModuleController extends ActiveController
             }
             else
             {
-                return ['status' => 0, 'message' => 'Ups.. Pasó algo inesperado.', 'object' => 'Error desconocido'];
+                return ['status' => 0, 'message' => 'Ups... No es necesario actualizar este dato', 'object' => 'Error desconocido'];
             }
         } 
     }
