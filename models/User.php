@@ -41,9 +41,9 @@ class User extends \yii\db\ActiveRecord
             [['nombres', 'apellidos', 'tipo_doc', 'nro_doc', 'email', 'telefono','direccion', 'usuario', 'clave', 'estado', 'rol_id'], 'required',  "message" => "Campo {attribute} no puede estar vacío."],
             [['rol_id'], 'integer'],
             [['nombres', 'apellidos', 'tipo_doc', 'nro_doc', 'email', 'telefono', 'direccion', 'usuario', 'clave', 'estado'], 'string', 'max' => 45,  "message" => "Campo {attribute} sobrepasó el límite esperado"],
-            [['email'], 'unique'],
-            [['nro_doc'], 'unique'],
-            [['usuario'], 'unique'],
+            [['email'], 'unique', 'message' => 'Campo {attribute} ya está registrado'],
+            [['nro_doc'], 'unique', 'message' => 'Campo {attribute} ya está registrado'],
+            [['usuario'], 'unique', 'message' => 'Campo {attribute} ya está registrado'],
             [['rol_id'], 'exist', 'message' => 'No existe el rol', 'skipOnError' => true, 'targetClass' => Role::className(), 'targetAttribute' => ['rol_id' => 'id']],
         ];
     }
